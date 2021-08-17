@@ -1,26 +1,26 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <WelcomeScreen v-if="welcomeScreen" />
+    <Game v-if="!welcomeScreen" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import WelcomeScreen from "./components/WelcomeScreen.vue";
+import Game from "./components/Game.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    WelcomeScreen,
+    Game,
+  },
+  computed: {
+    welcomeScreen() {
+      // return this.$store.gameStore.welcomeScreen
+      console.log("welcomeScreen:", this.$store.state.gameStore.welcomeScreen);
+      return this.$store.state.gameStore.welcomeScreen;
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
